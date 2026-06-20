@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grace Of God Xchange — Fast, Secure & Trusted Digital Asset Exchange</title>
+<meta name="description" content="Grace Of God Xchange: currency exchange, gift card trading, cryptocurrency and digital asset exchange. Fast, secure, trusted.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy-900:#0A1628;
+    --navy-800:#0F1F3A;
+    --navy-700:#16294D;
+    --navy-600:#1E3358;
+    --gold-500:#C9A646;
+    --gold-400:#D8BB66;
+    --gold-300:#E8D5A0;
+    --cream-50:#F7F4EC;
+    --cream-100:#F1ECDD;
+    --ink-900:#14161C;
+    --ink-600:#4A4F5C;
+    --line:rgba(201,166,70,0.18);
+    --radius:14px;
+    --maxw:1180px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important;}
+  }
+  body{
+    margin:0;
+    font-family:'Inter',system-ui,sans-serif;
+    color:var(--ink-900);
+    background:var(--cream-50);
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.display{font-family:'Fraunces',serif;}
+  .mono{font-family:'IBM Plex Mono',monospace;}
+  a{color:inherit;}
+  img,svg{max-width:100%;display:block;}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 28px;}
+  .section{padding:96px 0;}
+  @media (max-width:720px){ .section{padding:64px 0;} }
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    color:var(--gold-500);
+    font-weight:500;
+  }
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center; gap:8px;
+    padding:14px 28px;
+    border-radius:999px;
+    font-weight:600;
+    font-size:15px;
+    text-decoration:none;
+    cursor:pointer;
+    border:1px solid transparent;
+    transition:transform .25s ease, box-shadow .25s ease, background .25s ease;
+  }
+  .btn:focus-visible{outline:2px solid var(--gold-500); outline-offset:3px;}
+  .btn-gold{ background:linear-gradient(135deg,var(--gold-400),var(--gold-500)); color:var(--navy-900); box-shadow:0 8px 24px rgba(201,166,70,0.35);}
+  .btn-gold:hover{ transform:translateY(-2px); box-shadow:0 12px 30px rgba(201,166,70,0.45);}
+  .btn-ghost{ background:transparent; border-color:rgba(247,244,236,0.35); color:var(--cream-50);}
+  .btn-ghost:hover{ background:rgba(247,244,236,0.1); transform:translateY(-2px);}
+  .btn-dark{ background:var(--navy-900); color:var(--cream-50);}
+  .btn-dark:hover{ background:var(--navy-700); transform:translateY(-2px);}
+
+  /* NAV */
+  header{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    background:rgba(10,22,40,0.85);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  nav.wrap{ display:flex; align-items:center; justify-content:space-between; padding:14px 28px; }
+  .brand{ display:flex; align-items:center; gap:10px; text-decoration:none; }
+  .brand-name{ color:var(--cream-50); font-family:'Fraunces',serif; font-weight:600; font-size:18px; letter-spacing:0.01em;}
+  .brand-name span{color:var(--gold-400);}
+  .navlinks{ display:flex; gap:30px; list-style:none; margin:0; padding:0; }
+  .navlinks a{ color:var(--cream-100); text-decoration:none; font-size:14.5px; font-weight:500; opacity:0.85; transition:opacity .2s;}
+  .navlinks a:hover{opacity:1; color:var(--gold-300);}
+  .nav-cta{display:flex; align-items:center; gap:14px;}
+  .menu-btn{ display:none; background:none; border:none; cursor:pointer; padding:6px; }
+  .menu-btn span{ display:block; width:22px; height:2px; background:var(--cream-50); margin:5px 0; transition:.25s;}
+  @media (max-width:880px){
+    .navlinks{ position:fixed; top:62px; left:0; right:0; background:var(--navy-900); flex-direction:column; gap:0; padding:8px 28px 18px; transform:translateY(-150%); transition:transform .3s ease; border-bottom:1px solid var(--line);}
+    .navlinks.open{ transform:translateY(0); }
+    .navlinks li{ border-top:1px solid rgba(255,255,255,0.06); }
+    .navlinks a{ display:block; padding:14px 0; }
+    .menu-btn{ display:block; }
+    .nav-cta .btn-ghost{display:none;}
+  }
+
+  /* HERO */
+  .hero{
+    position:relative;
+    background:
+      radial-gradient(900px 500px at 85% -10%, rgba(201,166,70,0.20), transparent 60%),
+      radial-gradient(700px 500px at 10% 110%, rgba(201,166,70,0.10), transparent 60%),
+      linear-gradient(180deg, var(--navy-900), var(--navy-800));
+    color:var(--cream-50);
+    padding:168px 0 0;
+    overflow:hidden;
+  }
+  .hero-grid{
+    display:grid; grid-template-columns:1.1fr 0.9fr; gap:48px; align-items:center;
+    padding-bottom:80px;
+  }
+  @media (max-width:920px){ .hero-grid{grid-template-columns:1fr; padding-bottom:56px;} }
+  .hero h1{
+    font-size:clamp(34px,5vw,58px);
+    line-height:1.08;
+    font-weight:600;
+    margin:18px 0 22px;
+    letter-spacing:-0.01em;
+  }
+  .hero h1 em{ font-style:normal; color:var(--gold-400); }
+  .hero p.sub{ font-size:18px; line-height:1.6; color:var(--cream-100); opacity:0.85; max-width:46ch; margin:0 0 34px;}
+  .hero-actions{ display:flex; gap:16px; flex-wrap:wrap; }
+
+  .coin-mark{ width:min(380px,80vw); margin:0 auto; }
+  .coin-mark svg{ filter:drop-shadow(0 20px 50px rgba(0,0,0,0.45)); animation:float 6s ease-in-out infinite;}
+  @keyframes float{ 0%,100%{transform:translateY(0px);} 50%{transform:translateY(-14px);} }
+
+  /* TICKER — signature element */
+  .ticker-strip{
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    background:var(--navy-900);
+    overflow:hidden;
+    padding:14px 0;
+  }
+  .ticker-track{
+    display:flex; gap:48px; white-space:nowrap;
+    width:max-content;
+    animation:scroll-left 32s linear infinite;
+  }
+  .ticker-strip:hover .ticker-track{ animation-play-state:paused; }
+  @keyframes scroll-left{ from{transform:translateX(0);} to{transform:translateX(-50%);} }
+  .ticker-item{ font-family:'IBM Plex Mono',monospace; font-size:13.5px; color:var(--cream-100); display:flex; align-items:center; gap:8px; }
+  .ticker-item .pair{ color:var(--gold-400); font-weight:500; }
+  .ticker-item .up{ color:#7FD99A; }
+  .ticker-item .down{ color:#E08585; }
+  .ticker-item .dot{ width:4px; height:4px; border-radius:50%; background:var(--line); margin-left:8px;}
+
+  /* SECTION HEADERS */
+  .sec-head{ max-width:640px; margin-bottom:48px; }
+  .sec-head h2{ font-size:clamp(28px,3.4vw,40px); margin:10px 0 14px; font-weight:600; letter-spacing:-0.01em; }
+  .sec-head p{ font-size:16.5px; line-height:1.65; color:var(--ink-600); }
+  .on-dark .sec-head p{ color:var(--cream-100); opacity:.85;}
+  .on-dark .sec-head h2{ color:var(--cream-50); }
+
+  /* ABOUT */
+  .about{ background:var(--cream-50); }
+  .about-grid{ display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:start; }
+  @media (max-width:880px){ .about-grid{grid-template-columns:1fr; gap:36px;} }
+  .about p{ font-size:16.5px; line-height:1.75; color:var(--ink-600); margin:0 0 16px;}
+  .stat-grid{ display:grid; grid-template-columns:1fr 1fr; gap:22px; }
+  .stat{ background:#fff; border:1px solid rgba(20,22,28,0.07); border-radius:var(--radius); padding:22px 20px; }
+  .stat .num{ font-family:'Fraunces',serif; font-size:30px; font-weight:600; color:var(--navy-800); }
+  .stat .num span{ color:var(--gold-500); }
+  .stat .lbl{ font-size:13.5px; color:var(--ink-600); margin-top:4px; }
+
+  /* SERVICES */
+  .services{ background:var(--navy-900); color:var(--cream-50); }
+  .svc-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:22px; }
+  @media (max-width:980px){ .svc-grid{grid-template-columns:1fr 1fr;} }
+  @media (max-width:560px){ .svc-grid{grid-template-columns:1fr;} }
+  .svc-card{
+    background:var(--navy-800);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:30px 24px;
+    transition:transform .25s ease, border-color .25s ease, background .25s ease;
+  }
+  .svc-card:hover{ transform:translateY(-6px); border-color:rgba(201,166,70,0.45); background:var(--navy-700); }
+  .svc-icon{ width:46px; height:46px; margin-bottom:18px; }
+  .svc-card h3{ font-size:18px; margin:0 0 10px; font-weight:600; }
+  .svc-card p{ font-size:14.5px; line-height:1.6; color:var(--cream-100); opacity:0.78; margin:0; }
+  .svc-price{ margin-top:16px; font-family:'IBM Plex Mono',monospace; font-size:12.5px; color:var(--gold-400); }
+
+  /* WHY CHOOSE US */
+  .why{ background:var(--cream-100); }
+  .why-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:28px 36px; }
+  @media (max-width:880px){ .why-grid{grid-template-columns:1fr 1fr;} }
+  @media (max-width:560px){ .why-grid{grid-template-columns:1fr;} }
+  .why-item{ display:flex; gap:16px; align-items:flex-start; }
+  .why-icon{ flex:none; width:42px; height:42px; border-radius:10px; background:var(--navy-900); display:flex; align-items:center; justify-content:center; }
+  .why-icon svg{ width:22px; height:22px; }
+  .why-item h4{ margin:2px 0 6px; font-size:16px; font-weight:600; }
+  .why-item p{ margin:0; font-size:14px; line-height:1.55; color:var(--ink-600); }
+
+  /* GALLERY */
+  .gallery{ background:var(--cream-50); }
+  .gal-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+  @media (max-width:880px){ .gal-grid{grid-template-columns:1fr 1fr;} }
+  @media (max-width:560px){ .gal-grid{grid-template-columns:1fr;} }
+  .gal-card{
+    position:relative; border-radius:var(--radius); overflow:hidden; aspect-ratio:4/3.1;
+    background:linear-gradient(150deg,var(--navy-800),var(--navy-900));
+    display:flex; align-items:flex-end; padding:20px;
+  }
+  .gal-card .gal-deco{ position:absolute; inset:0; opacity:0.9; }
+  .gal-card .gal-label{ position:relative; color:var(--cream-50); font-weight:600; font-size:15px; z-index:2; }
+  .gal-card .gal-sub{ position:relative; color:var(--gold-300); font-size:12px; font-family:'IBM Plex Mono',monospace; z-index:2; margin-top:2px;}
+
+  /* TESTIMONIALS */
+  .testi{ background:var(--navy-900); color:var(--cream-50); }
+  .testi-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+  @media (max-width:880px){ .testi-grid{grid-template-columns:1fr;} }
+  .testi-card{ background:var(--navy-800); border:1px solid var(--line); border-radius:var(--radius); padding:28px 24px; }
+  .stars{ color:var(--gold-400); font-size:14px; letter-spacing:2px; margin-bottom:14px;}
+  .testi-card p.quote{ font-size:15px; line-height:1.7; color:var(--cream-100); opacity:0.9; margin:0 0 20px; }
+  .testi-person{ display:flex; align-items:center; gap:12px; }
+  .testi-avatar{ width:38px; height:38px; border-radius:50%; background:linear-gradient(135deg,var(--gold-400),var(--gold-500)); display:flex; align-items:center; justify-content:center; font-family:'Fraunces',serif; font-weight:600; color:var(--navy-900); font-size:14px;}
+  .testi-name{ font-size:14px; font-weight:600; }
+  .testi-role{ font-size:12.5px; color:var(--cream-100); opacity:0.6; }
+
+  /* CONTACT */
+  .contact{ background:var(--cream-100); }
+  .contact-grid{ display:grid; grid-template-columns:0.85fr 1.15fr; gap:48px; }
+  @media (max-width:880px){ .contact-grid{grid-template-columns:1fr; gap:36px;} }
+  .contact-card{ background:var(--navy-900); color:var(--cream-50); border-radius:var(--radius); padding:34px; }
+  .contact-row{ display:flex; gap:14px; align-items:flex-start; padding:16px 0; border-bottom:1px solid var(--line); }
+  .contact-row:last-child{border-bottom:none;}
+  .contact-row .ic{ width:38px; height:38px; flex:none; border-radius:9px; background:rgba(201,166,70,0.14); display:flex; align-items:center; justify-content:center;}
+  .contact-row .lbl{ font-size:12px; text-transform:uppercase; letter-spacing:0.08em; color:var(--gold-300); font-family:'IBM Plex Mono',monospace;}
+  .contact-row .val{ font-size:15.5px; font-weight:500; margin-top:3px;}
+  .form-card{ background:#fff; border-radius:var(--radius); padding:34px; border:1px solid rgba(20,22,28,0.07); }
+  .field{ margin-bottom:18px; }
+  .field label{ display:block; font-size:13px; font-weight:600; margin-bottom:7px; color:var(--navy-900);}
+  .field input, .field textarea{
+    width:100%; padding:13px 14px; border-radius:9px; border:1.5px solid #E3DECF; font-family:'Inter',sans-serif; font-size:14.5px;
+    background:#FBFAF6; transition:border-color .2s;
+  }
+  .field input:focus, .field textarea:focus{ outline:none; border-color:var(--gold-500); background:#fff; }
+  .field textarea{ resize:vertical; min-height:110px;}
+  .form-row{ display:grid; grid-template-columns:1fr 1fr; gap:16px;}
+  @media (max-width:480px){ .form-row{grid-template-columns:1fr;} }
+  #form-status{ font-size:14px; margin-top:8px; min-height:20px; }
+  #form-status.ok{ color:#2E7D4F; }
+  #form-status.err{ color:#C0392B; }
+
+  /* FOOTER */
+  footer{ background:var(--navy-900); color:var(--cream-100); padding:56px 0 28px; border-top:1px solid var(--line);}
+  .foot-grid{ display:flex; justify-content:space-between; gap:40px; flex-wrap:wrap; padding-bottom:36px; border-bottom:1px solid var(--line); }
+  .foot-brand p{ max-width:320px; font-size:14px; opacity:.7; line-height:1.6; margin-top:14px;}
+  .foot-col h5{ font-size:13px; text-transform:uppercase; letter-spacing:0.08em; color:var(--gold-400); margin:0 0 14px; font-family:'IBM Plex Mono',monospace; font-weight:500;}
+  .foot-col a{ display:block; text-decoration:none; font-size:14px; color:var(--cream-100); opacity:.75; margin-bottom:10px; }
+  .foot-col a:hover{opacity:1; color:var(--gold-300);}
+  .foot-bottom{ display:flex; justify-content:space-between; align-items:center; padding-top:24px; flex-wrap:wrap; gap:16px;}
+  .foot-bottom p{ font-size:13px; opacity:.55; margin:0; }
+  .social{ display:flex; gap:10px; }
+  .social a{ width:36px; height:36px; border-radius:50%; border:1px solid var(--line); display:flex; align-items:center; justify-content:center; text-decoration:none; transition:.2s;}
+  .social a:hover{ background:var(--gold-500); border-color:var(--gold-500);}
+  .social a:hover svg{ stroke:var(--navy-900); }
+  .social svg{ width:16px; height:16px; stroke:var(--cream-100); transition:.2s;}
+
+  .reveal{ opacity:0; transform:translateY(24px); transition:opacity .7s ease, transform .7s ease; }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <a href="#top" class="brand">
+      <svg width="34" height="34" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="32" cy="32" r="31" fill="#0A1628" stroke="#C9A646" stroke-width="1.5"/>
+        <circle cx="32" cy="32" r="24" fill="none" stroke="#C9A646" stroke-width="1" opacity="0.5"/>
+        <path d="M40 22.5C37.8 20 34.9 18.5 31.6 18.5C25 18.5 19.7 23.9 19.7 30.5C19.7 30.5 19.7 33.5 19.7 33.5C19.7 40.1 25 45.5 31.6 45.5C36.5 45.5 40.7 42.6 42.5 38.4" stroke="#C9A646" stroke-width="3" stroke-linecap="round" fill="none"/>
+        <path d="M31.6 30.5H42.5" stroke="#C9A646" stroke-width="3" stroke-linecap="round"/>
+        <path d="M38.5 27L42.5 30.5L38.5 34" stroke="#E8D5A0" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      </svg>
+      <span class="brand-name">Grace Of God <span>Xchange</span></span>
+    </a>
+    <ul class="navlinks" id="navlinks">
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#why">Why Us</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#testimonials">Reviews</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="#contact" class="btn btn-ghost">Contact Us</a>
+      <a href="#contact" class="btn btn-gold">Get Started</a>
+      <button class="menu-btn" id="menuBtn" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<main id="top">
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <p class="eyebrow">Currency · Crypto · Gift Cards · Digital Assets</p>
+        <h1>Your trusted partner for currency exchange, <em>crypto</em> &amp; digital assets</h1>
+        <p class="sub">Fast transactions, competitive rates, secure payments, and reliable customer service — every time.</p>
+        <div class="hero-actions">
+          <a href="#contact" class="btn btn-gold">Contact Us</a>
+          <a href="#services" class="btn btn-ghost">Get Started</a>
+        </div>
+      </div>
+      <div class="coin-mark">
+        <svg viewBox="0 0 320 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="160" cy="160" r="150" fill="url(#g1)"/>
+          <circle cx="160" cy="160" r="150" stroke="#C9A646" stroke-width="1.5" fill="none" opacity="0.6"/>
+          <circle cx="160" cy="160" r="118" stroke="#C9A646" stroke-width="1" fill="none" opacity="0.35"/>
+          <circle cx="160" cy="160" r="118" stroke-dasharray="2 8" stroke="#E8D5A0" stroke-width="1.5" fill="none" opacity="0.6"/>
+          <g transform="translate(160,160)">
+            <path d="M16 -38C8 -48 -6 -54 -22 -50C-44 -45 -58 -24 -54 -2C-54 -2 -54 14 -54 14C-50 36 -29 51 -7 47C9 44 23 33 29 18" stroke="#C9A646" stroke-width="7" stroke-linecap="round" fill="none"/>
+            <path d="M-22 -2H40" stroke="#C9A646" stroke-width="7" stroke-linecap="round"/>
+            <path d="M24 -16L40 -2L24 12" stroke="#E8D5A0" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          </g>
+          <defs>
+            <linearGradient id="g1" x1="20" y1="0" x2="300" y2="320" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#16294D"/>
+              <stop offset="1" stop-color="#0A1628"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+    </div>
+
+    <div class="ticker-strip">
+      <div class="ticker-track" id="tickerTrack"></div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="section about" id="about">
+    <div class="wrap about-grid">
+      <div class="reveal">
+        <p class="eyebrow">About Us</p>
+        <h2 style="margin-top:10px;">Built on trust. Engineered for speed.</h2>
+        <p>Grace Of God Xchange is a digital asset and currency exchange business specialising in currency exchange, buying and selling gift cards, cryptocurrency trading, and digital asset transactions.</p>
+        <p>Every transaction we process is built around three things our clients tell us matter most: transparency in our rates, speed in our turnaround, and security in how we handle your funds. Whether you're converting currency, liquidating a gift card, or moving crypto, our team verifies and settles transactions quickly so you're never left waiting.</p>
+        <p>We've grown by word of mouth — because once a client sees how fast and fair we are, they come back, and they bring others.</p>
+      </div>
+      <div class="reveal stat-grid">
+        <div class="stat"><div class="num"><span>24</span>/7</div><div class="lbl">Support availability</div></div>
+        <div class="stat"><div class="num">&lt;30<span>min</span></div><div class="lbl">Average settlement time</div></div>
+        <div class="stat"><div class="num">100<span>%</span></div><div class="lbl">Transaction transparency</div></div>
+        <div class="stat"><div class="num">4<span>+</span></div><div class="lbl">Core asset categories</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="section services" id="services">
+    <div class="wrap">
+      <div class="sec-head on-dark">
+        <p class="eyebrow">What We Offer</p>
+        <h2>Services built around your assets</h2>
+        <p>From everyday currency needs to crypto and gift cards, we handle it with the same speed and care.</p>
+      </div>
+      <div class="svc-grid" id="svcGrid"></div>
+    </div>
+  </section>
+
+  <!-- WHY CHOOSE US -->
+  <section class="section why" id="why">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Why Choose Us</p>
+        <h2>The Grace Of God Xchange difference</h2>
+      </div>
+      <div class="why-grid" id="whyGrid"></div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="section gallery" id="gallery">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Gallery</p>
+        <h2>Across currencies, crypto &amp; cards</h2>
+      </div>
+      <div class="gal-grid" id="galGrid"></div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="section testi" id="testimonials">
+    <div class="wrap">
+      <div class="sec-head on-dark">
+        <p class="eyebrow">Testimonials</p>
+        <h2>What our clients say</h2>
+      </div>
+      <div class="testi-grid" id="testiGrid"></div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section contact" id="contact">
+    <div class="wrap contact-grid">
+      <div class="reveal">
+        <p class="eyebrow">Get In Touch</p>
+        <h2 style="margin:10px 0 24px; font-size:30px;">Let's talk about your exchange</h2>
+        <div class="contact-card">
+          <div class="contact-row">
+            <div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#E8D5A0" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.34 1.79.65 2.65a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.43-1.27a2 2 0 0 1 2.11-.45c.86.31 1.75.53 2.65.65A2 2 0 0 1 22 16.92z"/></svg></div>
+            <div><div class="lbl">Phone</div><div class="val">09066289476</div></div>
+          </div>
+          <div class="contact-row">
+            <div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#E8D5A0" stroke-width="2"><path d="M4 4h16v16H4z" opacity="0"/><path d="M4 6h16v12H4z"/><path d="m4 7 8 6 8-6"/></svg></div>
+            <div><div class="lbl">Email</div><div class="val">gracexchange99@gmail.com</div></div>
+          </div>
+          <div class="contact-row">
+            <div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#E8D5A0" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
+            <div><div class="lbl">Hours</div><div class="val">Mon – Sat, 8am – 8pm</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal form-card">
+        <form id="contactForm">
+          <div class="form-row">
+            <div class="field">
+              <label for="name">Full name</label>
+              <input type="text" id="name" name="name" required placeholder="Your name">
+            </div>
+            <div class="field">
+              <label for="phone">Phone</label>
+              <input type="tel" id="phone" name="phone" required placeholder="0801 234 5678">
+            </div>
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required placeholder="you@example.com">
+          </div>
+          <div class="field">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" required placeholder="Tell us what you'd like to exchange..."></textarea>
+          </div>
+          <button type="submit" class="btn btn-dark" style="width:100%;" id="submitBtn">Send Message</button>
+          <div id="form-status"></div>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand" style="max-width:340px;">
+        <div class="brand">
+          <svg width="30" height="30" viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="31" fill="#0F1F3A" stroke="#C9A646" stroke-width="1.5"/><path d="M40 22.5C37.8 20 34.9 18.5 31.6 18.5C25 18.5 19.7 23.9 19.7 30.5C19.7 30.5 19.7 33.5 19.7 33.5C19.7 40.1 25 45.5 31.6 45.5C36.5 45.5 40.7 42.6 42.5 38.4" stroke="#C9A646" stroke-width="3" stroke-linecap="round" fill="none"/><path d="M31.6 30.5H42.5" stroke="#C9A646" stroke-width="3" stroke-linecap="round"/><path d="M38.5 27L42.5 30.5L38.5 34" stroke="#E8D5A0" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+          <span class="brand-name" style="color:#F7F4EC;">Grace Of God <span style="color:#D8BB66;">Xchange</span></span>
+        </div>
+        <p>Fast, secure &amp; trusted digital asset exchange — currency, crypto, gift cards and more.</p>
+      </div>
+      <div class="foot-col">
+        <h5>Navigate</h5>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#why">Why Us</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div class="foot-col">
+        <h5>Contact</h5>
+        <a href="tel:09066289476">09066289476</a>
+        <a href="mailto:gracexchange99@gmail.com">gracexchange99@gmail.com</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <p>&copy; <span id="year"></span> Grace Of God Xchange. All rights reserved.</p>
+      <div class="social">
+        <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+        <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/></svg></a>
+        <a href="#" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M21 11.5a8.5 8.5 0 0 1-12.4 7.5L3 20l1.1-5.5A8.5 8.5 0 1 1 21 11.5z"/></svg></a>
+        <a href="#" aria-label="Twitter/X"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M4 4l16 16M20 4 4 20"/></svg></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ===== Config ===== */
+const API_BASE = ""; // same-origin; set e.g. "https://your-backend.onrender.com" if hosted separately
+
+/* ===== Mobile menu ===== */
+const menuBtn = document.getElementById('menuBtn');
+const navlinks = document.getElementById('navlinks');
+menuBtn.addEventListener('click', () => {
+  const open = navlinks.classList.toggle('open');
+  menuBtn.setAttribute('aria-expanded', open);
+});
+navlinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navlinks.classList.remove('open')));
+
+/* ===== Year ===== */
+document.getElementById('year').textContent = new Date().getFullYear();
+
+/* ===== Reveal on scroll ===== */
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+}, { threshold: 0.15 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+/* ===== Ticker ===== */
+const tickerData = [
+  {pair:'USD / NGN', val:'1,620', dir:'up'},
+  {pair:'GBP / NGN', val:'2,055', dir:'up'},
+  {pair:'EUR / NGN', val:'1,745', dir:'down'},
+  {pair:'BTC / USDT', val:'67,420', dir:'up'},
+  {pair:'ETH / USDT', val:'3,512', dir:'up'},
+  {pair:'USDT / NGN', val:'1,605', dir:'down'},
+  {pair:'AMAZON GC', val:'92% rate', dir:'up'},
+  {pair:'ITUNES GC', val:'88% rate', dir:'up'},
+  {pair:'STEAM GC', val:'80% rate', dir:'down'},
+];
+function renderTicker(){
+  const track = document.getElementById('tickerTrack');
+  const items = [...tickerData, ...tickerData].map(t => `
+    <span class="ticker-item">
+      <span class="pair">${t.pair}</span> ${t.val}
+      <span class="${t.dir}">${t.dir==='up' ? '▲' : '▼'}</span>
+      <span class="dot"></span>
+    </span>`).join('');
+  track.innerHTML = items;
+}
+renderTicker();
+
+/* ===== Services (fallback data + live fetch) ===== */
+const fallbackServices = [
+  { title:'Currency Exchange', desc:'Convert major world currencies at competitive, transparent rates with same-day settlement.', icon:'exchange' },
+  { title:'Gift Card Trading', desc:'Sell or buy gift cards from top brands with fast verification and instant payout.', icon:'card' },
+  { title:'Cryptocurrency Exchange', desc:'Buy, sell and swap BTC, ETH, USDT and more with secure, fast crypto-to-cash transactions.', icon:'crypto' },
+  { title:'Digital Asset Trading', desc:'Trade a wide range of digital assets with full transparency and dedicated support.', icon:'asset' },
+];
+const icons = {
+  exchange:'<svg viewBox="0 0 24 24" fill="none" stroke="#C9A646" stroke-width="2"><path d="M7 7h12M19 7l-4-4M19 7l-4 4"/><path d="M17 17H5M5 17l4 4M5 17l4-4"/></svg>',
+  card:'<svg viewBox="0 0 24 24" fill="none" stroke="#C9A646" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/><path d="M6 15h4"/></svg>',
+  crypto:'<svg viewBox="0 0 24 24" fill="none" stroke="#C9A646" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9.5h3.5a1.75 1.75 0 1 1 0 3.5H9m0 0h3.8a1.9 1.9 0 1 1 0 3.8H9m1.2-9.3V8m0 9.8v1.4M13 7.7V9m0 8v1.3"/></svg>',
+  asset:'<svg viewBox="0 0 24 24" fill="none" stroke="#C9A646" stroke-width="2"><path d="M12 2 3 7l9 5 9-5-9-5z"/><path d="M3 12l9 5 9-5"/><path d="M3 17l9 5 9-5"/></svg>',
+};
+function renderServices(list){
+  const grid = document.getElementById('svcGrid');
+  grid.innerHTML = list.map(s => `
+    <div class="svc-card">
+      <div class="svc-icon">${icons[s.icon] || icons.asset}</div>
+      <h3>${s.title}</h3>
+      <p>${s.desc}</p>
+      ${s.rate ? `<div class="svc-price">${s.rate}</div>` : ''}
+    </div>`).join('');
+}
+renderServices(fallbackServices);
+fetch(`${API_BASE}/api/services`).then(r => r.ok ? r.json() : Promise.reject())
+  .then(data => { if (Array.isArray(data) && data.length) renderServices(data); })
+  .catch(() => { /* keep fallback content — backend not connected yet */ });
+
+/* ===== Why choose us ===== */
+const whyItems = [
+  { title:'Fast Transactions', desc:'Most exchanges settle in under 30 minutes.', icon:'<path d="M13 2 4 14h7l-1 8 10-12h-7l1-8z"/>' },
+  { title:'Secure Payments', desc:'Every transaction is verified before funds move.', icon:'<path d="M12 2 4 5v6c0 5 3.5 8.5 8 11 4.5-2.5 8-6 8-11V5l-8-3z"/>' },
+  { title:'Competitive Rates', desc:'Transparent, market-aligned rates — no hidden fees.', icon:'<path d="M3 17h4v4H3zM10 11h4v10h-4zM17 5h4v16h-4z"/>' },
+  { title:'Trusted Service', desc:'Built on referrals from clients who keep coming back.', icon:'<path d="m12 17.3-6.2 3.6 1.6-7-5.4-4.7 7.1-.6L12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7z"/>' },
+  { title:'Excellent Support', desc:'Real people, ready to help across phone and email.', icon:'<path d="M21 11.5a8.5 8.5 0 0 1-12.4 7.5L3 20l1.1-5.5A8.5 8.5 0 1 1 21 11.5z"/>' },
+  { title:'Reliable & Transparent', desc:'You always know exactly where your transaction stands.', icon:'<circle cx="12" cy="12" r="9"/><path d="M9 12.5 11 14.5 15.5 9.5"/>' },
+];
+document.getElementById('whyGrid').innerHTML = whyItems.map(w => `
+  <div class="why-item">
+    <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#E8D5A0" stroke-width="1.8">${w.icon}</svg></div>
+    <div><h4>${w.title}</h4><p>${w.desc}</p></div>
+  </div>`).join('');
+
+/* ===== Gallery (custom illustrated panels — no stock photos) ===== */
+const galItems = [
+  { label:'Currency Exchange', sub:'USD · GBP · EUR · NGN', grad:'linear-gradient(135deg,#16294D,#0A1628)' },
+  { label:'Crypto Trading', sub:'BTC · ETH · USDT', grad:'linear-gradient(135deg,#1E3358,#0F1F3A)' },
+  { label:'Gift Cards', sub:'Amazon · iTunes · Steam', grad:'linear-gradient(135deg,#16294D,#1E3358)' },
+  { label:'Digital Finance', sub:'Secure, instant settlement', grad:'linear-gradient(135deg,#0F1F3A,#16294D)' },
+  { label:'Mobile Banking', sub:'Exchange from anywhere', grad:'linear-gradient(135deg,#1E3358,#0A1628)' },
+  { label:'Digital Assets', sub:'Diverse asset support', grad:'linear-gradient(135deg,#0A1628,#16294D)' },
+];
+document.getElementById('galGrid').innerHTML = galItems.map(g => `
+  <div class="gal-card" style="background:${g.grad}">
+    <svg class="gal-deco" viewBox="0 0 300 220" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="250" cy="20" r="90" fill="#C9A646" opacity="0.07"/>
+      <circle cx="250" cy="20" r="60" stroke="#C9A646" stroke-width="1" fill="none" opacity="0.25"/>
+      <circle cx="20" cy="210" r="70" fill="#C9A646" opacity="0.05"/>
+    </svg>
+    <div>
+      <div class="gal-label">${g.label}</div>
+      <div class="gal-sub">${g.sub}</div>
+    </div>
+  </div>`).join('');
+
+/* ===== Testimonials ===== */
+const testimonials = [
+  { name:'Adaeze O.', role:'Crypto trader', quote:'Sold USDT and had cash in my account within 20 minutes. Rate was exactly what they quoted — no surprises.' },
+  { name:'Emeka N.', role:'Frequent gift card seller', quote:'I sell gift cards weekly and Grace Of God Xchange has never delayed a payment. Verification is quick and fair.' },
+  { name:'Bukola A.', role:'Small business owner', quote:'Needed to convert GBP for a supplier payment fast. Customer support walked me through everything by phone.' },
+];
+document.getElementById('testiGrid').innerHTML = testimonials.map(t => `
+  <div class="testi-card">
+    <div class="stars">★★★★★</div>
+    <p class="quote">"${t.quote}"</p>
+    <div class="testi-person">
+      <div class="testi-avatar">${t.name.split(' ').map(n=>n[0]).join('')}</div>
+      <div>
+        <div class="testi-name">${t.name}</div>
+        <div class="testi-role">${t.role}</div>
+      </div>
+    </div>
+  </div>`).join('');
+
+/* ===== Contact form ===== */
+const form = document.getElementById('contactForm');
+const statusEl = document.getElementById('form-status');
+const submitBtn = document.getElementById('submitBtn');
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  statusEl.textContent = '';
+  statusEl.className = '';
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Sending...';
+  const payload = Object.fromEntries(new FormData(form).entries());
+  try {
+    const res = await fetch(`${API_BASE}/api/contact`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    if (!res.ok) throw new Error('Request failed');
+    statusEl.textContent = "Thanks — we've received your message and will respond shortly.";
+    statusEl.className = 'ok';
+    form.reset();
+  } catch (err) {
+    statusEl.textContent = "We couldn't reach the server. Please call or WhatsApp us at 09066289476.";
+    statusEl.className = 'err';
+  } finally {
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Send Message';
+  }
+});
+</script>
+</body>
+</html>
