@@ -179,3 +179,6 @@ app.delete('/api/admin/bookings/:id', requireAuth, (req, res) => {
 app.listen(PORT, () => {
   console.log(`Grace Of God Xchange server running on http://localhost:${PORT}`);
 });
+app.get('/debug/contacts', (req, res) => {
+  res.json(readData('contacts.json', []));
+});
